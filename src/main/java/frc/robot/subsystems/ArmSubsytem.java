@@ -4,49 +4,40 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import com.ctre.phoenix.motorcontrol.*;
+import com.ctre.phoenix.motorcontrol.can.*;
+import edu.wpi.first.wpilibj2.command.*;
 import frc.robot.commands.ArmStop;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 
 public class ArmSubsytem extends SubsystemBase {
-  /** Creates a new AngleSubsytem. */
+  WPI_TalonSRX m_extension = new WPI_TalonSRX(Constants.armMotor);
+  private double current_speed = 0;
 
-WPI_TalonSRX m_extension = new WPI_TalonSRX(Constants.armMotor);
-private double current_speed = 0;
-
-
+  /** Creates a new ArmSubsytem. */
   public ArmSubsytem() {
     setDefaultCommand(new ArmStop(this));
   }
 
-
-  public void extend(double speed){
+  public void extend(double speed) {
       m_extension.set(ControlMode.PercentOutput, -speed);
   }
 
-  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
       m_extension.set(current_speed);
   }
 
-
   public void ArmStop() {
     m_extension.set(0);
   }
-
 
   public void ArmForward() {
     m_extension.set(0.2);
   }
 
-
   public void ArmBackward() {
     m_extension.set(-0.2);
   }
-
 }

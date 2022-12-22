@@ -9,12 +9,12 @@ import frc.robot.subsystems.ArmSubsytem;
 
 public class ArmStop extends CommandBase {
   ArmSubsytem m_arm;
+  
   /** Creates a new ArmStop. */
-  public ArmStop(ArmSubsytem param_ArmSubsystem) {
+  public ArmStop(ArmSubsytem param_arm) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_arm = param_ArmSubsystem;
+    m_arm = param_arm;
     addRequirements(m_arm);
-
   }
 
   // Called when the command is initially scheduled.
